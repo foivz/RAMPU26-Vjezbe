@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AndroidTest764321"
+rootProject.name = "Memento"
 include(":app")

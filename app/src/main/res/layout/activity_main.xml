@@ -7,23 +7,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btnKlikni"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Klikni ovo"
-        app:layout_constraintBottom_toTopOf="@id/etIme"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        app:tabMode="fixed"
+        android:backgroundTint="?attr/colorPrimary"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="?attr/colorSecondary"
+        app:tabRippleColor="?attr/colorAccent"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white"
+        app:tabIconTint="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
-    <EditText
-        android:id="@+id/etIme"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+

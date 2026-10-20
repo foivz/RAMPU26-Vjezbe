@@ -1,4 +1,4 @@
-package hr.foi.rampu.androidtest764321
+package hr.foi.rampu.memento
 
 import org.junit.Test
 

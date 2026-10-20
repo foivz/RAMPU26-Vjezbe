@@ -3,14 +3,14 @@ plugins {
 }
 
 android {
-    namespace = "hr.foi.rampu.androidtest764321"
+    namespace = "hr.foi.rampu.memento"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "hr.foi.rampu.androidtest764321"
-        minSdk = 30
+        applicationId = "hr.foi.rampu.memento"
+        minSdk = 28
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
