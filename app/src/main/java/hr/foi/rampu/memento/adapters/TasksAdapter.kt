@@ -12,7 +12,7 @@ import hr.foi.rampu.memento.entities.Task
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class TasksAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
+class TasksAdapter(private val taskList: MutableList<Task>) : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val sdf: SimpleDateFormat = SimpleDateFormat("dd.MM.yyyy. HH:mm", Locale.ENGLISH)
         private val taskName: TextView
@@ -52,6 +52,17 @@ class TasksAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<Task
 
     override fun getItemCount(): Int {
         return taskList.size
+    }
+
+    fun addTask(newTask: Task) {
+        var newIndexInList = taskList.indexOfFirst { task ->
+            task.dueDate > newTask.dueDate
+        }
+        if (newIndexInList == -1) {
+            newIndexInList = taskList.size
+        }
+        taskList.add(newIndexInList, newTask)
+        notifyItemInserted(newIndexInList)
     }
 }
 

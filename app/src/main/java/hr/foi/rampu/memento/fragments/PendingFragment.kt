@@ -12,6 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import hr.foi.rampu.memento.R
 import hr.foi.rampu.memento.adapters.TasksAdapter
 import hr.foi.rampu.memento.helpers.MockDataLoader
+import hr.foi.rampu.memento.helpers.NewTaskDialogHelper
 
 class PendingFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -40,11 +41,20 @@ class PendingFragment : Fragment() {
             .from(requireContext())
             .inflate(R.layout.new_task_dialog, null)
 
+        val dialogHelper = NewTaskDialogHelper(newTaskDialogView)
+
         AlertDialog.Builder(requireContext())
             .setView(newTaskDialogView)
             .setTitle(getString(R.string.create_a_new_task))
+            .setPositiveButton(getString(R.string.create_a_new_task)) { _, _ ->
+                val newTask = dialogHelper.buildTask()
+                val tasksAdapter = recyclerView.adapter as TasksAdapter
+                tasksAdapter.addTask(newTask)
+            }
             .show()
 
+        dialogHelper.populateSpinner(MockDataLoader.getDemoCategories())
+        dialogHelper.activateDateTimeListeners()
     }
 }
 
