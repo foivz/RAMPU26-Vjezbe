@@ -12,7 +12,6 @@ import hr.foi.rampu.memento.entities.TaskCategory
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.math.min
 
 class NewTaskDialogHelper(private val view: View) {
     private val selectedDateTime: Calendar = Calendar.getInstance()

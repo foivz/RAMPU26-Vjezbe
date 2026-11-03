@@ -4,10 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import hr.foi.rampu.memento.R
-import hr.foi.rampu.memento.fragments.CompletedFragment
-import hr.foi.rampu.memento.fragments.NewsFragment
-import hr.foi.rampu.memento.fragments.PendingFragment
 import kotlin.reflect.KClass
 
 class MainPagerAdapter(
