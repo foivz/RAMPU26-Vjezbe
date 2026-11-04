@@ -54,18 +54,20 @@ class NewTaskDialogHelper(private val view: View) {
 
         timeSelection.onFocusChangeListener = object : View.OnFocusChangeListener {
             override fun onFocusChange(view: View, hasFocus: Boolean) {
-                TimePickerDialog(
-                    view.context,
-                    { _, hourOfDay, minute ->
-                        selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        selectedDateTime.set(Calendar.MINUTE, minute)
-                        timeSelection.setText(sdfTime.format(selectedDateTime.time).toString())
-                    },
-                    selectedDateTime.get(Calendar.HOUR_OF_DAY),
-                    selectedDateTime.get(Calendar.MINUTE),
-                    true
-                ).show()
-                view.clearFocus()
+                if (hasFocus) {
+                    TimePickerDialog(
+                        view.context,
+                        { _, hourOfDay, minute ->
+                            selectedDateTime.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                            selectedDateTime.set(Calendar.MINUTE, minute)
+                            timeSelection.setText(sdfTime.format(selectedDateTime.time).toString())
+                        },
+                        selectedDateTime.get(Calendar.HOUR_OF_DAY),
+                        selectedDateTime.get(Calendar.MINUTE),
+                        true
+                    ).show()
+                    view.clearFocus()
+                }
             }
         }
     }
@@ -75,7 +77,7 @@ class NewTaskDialogHelper(private val view: View) {
         val newTaskName = etName.text.toString()
         val selectedCategory = spinner.selectedItem as TaskCategory
 
-        return Task(newTaskName, selectedDateTime.time, selectedCategory, false)
+        return Task(0, newTaskName, selectedDateTime.time, selectedCategory.id, false)
     }
 }
 

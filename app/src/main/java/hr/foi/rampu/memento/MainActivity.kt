@@ -12,6 +12,8 @@ import hr.foi.rampu.memento.fragments.CompletedFragment
 import hr.foi.rampu.memento.fragments.NewsFragment
 import hr.foi.rampu.memento.fragments.PendingFragment
 import androidx.core.view.get
+import hr.foi.rampu.memento.database.TasksDatabase
+import hr.foi.rampu.memento.helpers.MockDataLoader
 
 class MainActivity : AppCompatActivity() {
     lateinit var tabLayout: TabLayout
@@ -79,6 +81,9 @@ class MainActivity : AppCompatActivity() {
                 navView.menu[position].isChecked = true
             }
         })
+
+        TasksDatabase.buildInstance(applicationContext)
+        MockDataLoader.loadMockData()
     }
 }
 
