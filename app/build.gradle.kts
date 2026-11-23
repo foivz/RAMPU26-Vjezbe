@@ -45,6 +45,12 @@ dependencies {
 
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
+
+    implementation(libs.gson)
+    implementation(libs.converter.gson)
+    implementation(libs.retrofit)
+    implementation(libs.picasso)
+
 }
 
 
