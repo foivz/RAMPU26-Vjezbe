@@ -1,0 +1,84 @@
+package hr.foi.rampu.wearable.presentation
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import androidx.wear.compose.foundation.lazy.items
+import androidx.wear.compose.foundation.lazy.rememberScalingLazyListState
+import androidx.wear.compose.material.CircularProgressIndicator
+import androidx.wear.compose.material.MaterialTheme
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Scaffold
+import androidx.wear.compose.material.Vignette
+import androidx.wear.compose.material.VignettePosition
+import androidx.wear.compose.material3.AppScaffold
+import androidx.wear.compose.material3.Card
+import androidx.wear.compose.material3.CircularProgressIndicator
+import androidx.wear.compose.material3.Text
+import hr.foi.rampu.wearable.R
+import hr.foi.rampu.wearable.presentation.models.Task
+import hr.foi.rampu.wearable.presentation.theme.MementoTheme
+
+@Composable
+fun MementoApp(tasks: List<Task>) {
+    val listState = rememberScalingLazyListState()
+
+    MementoTheme {
+        Scaffold(
+            positionIndicator = { PositionIndicator(scalingLazyListState = listState) },
+            vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) }
+        ) {
+            if (tasks.isEmpty()) {
+                CircularProgressIndicator(
+                    modifier = Modifier.fillMaxSize(),
+                    indicatorColor = MaterialTheme.colors.primaryVariant
+                )
+
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = stringResource(R.string.msg_waiting_for_tasks),
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        }
+
+        ScalingLazyColumn {
+            items(tasks) { task ->
+                TaskCard(task)
+            }
+        }
+    }
+
+
+}
+
+
+@Composable
+fun TaskCard(task: Task) {
+    Card(onClick = {}) {
+        Column {
+            Text(task.name)
+            Text(task.categoryName)
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
